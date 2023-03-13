@@ -8,7 +8,7 @@ import { useRouter } from "next/router"
 export default function Home({ comics }) {
   const router = useRouter();
   const { comicId } = router.query;
-  const comic = comicId && comics.find((x) => x.id === parseInt(comicId));
+  const comic = comicId && comics.find((x: any) => x.id === parseInt(comicId as string));
 
   const onDismiss = useCallback(() => {
     if (comicId) router.back();
