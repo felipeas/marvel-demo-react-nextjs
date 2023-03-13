@@ -1,6 +1,6 @@
 import md5 from 'md5';
 
-export default async function getComics() {
+export default async function getComics(offset: Number) {
     const resource = 'comics'
     const PUBLIC_KEY = process.env.MARVEL_PUBLIC_KEY;
     const PRIVATE_KEY = process.env.MARVEL_PRIVATE_KEY;
@@ -10,7 +10,9 @@ export default async function getComics() {
     const hash = md5(`${timestamp}${PRIVATE_KEY}${PUBLIC_KEY}`);
     const url = `${URL}/${resource}`;
 
-    const uri = `${url}?apikey=${PUBLIC_KEY}&ts=${timestamp}&hash=${hash}&orderBy=-focDate`;
+    const uri = `${url}?apikey=${PUBLIC_KEY}&ts=${timestamp}&hash=${hash}&offset=${offset}&orderBy=-focDate`;
     const res = await fetch(uri).then(response => response.json())
+    console.log(res)
     return res.data.results
 }
+

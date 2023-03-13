@@ -57,8 +57,8 @@ export default function ComicModal({ comic, onDismiss }) {
       <div ref={wrapper} className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center">
         {!isShipped ? <>
           <div className="bg-white flex flex-col justify-between">
-            <div className="mt-16 max-w-2xl px-1 sm:px-6 lg:max-w-7xl lg:px-5">
-              <div className="flex flex-col sm:flex-row">
+            <div className="mt-16 max-w-full px-1 sm:px-6 lg:max-w-7xl lg:px-5">
+              <div className="flex flex-col  sm:flex-row">
                 <Image
                   src={thumb(comic.thumbnail)}
                   alt={comic.title}
@@ -66,15 +66,15 @@ export default function ComicModal({ comic, onDismiss }) {
                   height={425}
                   style={{ minHeight: '150px' }}
                 />
-                <div className="mt-10 flex flex-col sm:mt-0 sm:ml-10">
-                  <h2 className="mt-1 text-l font-bold text-gray-900 sm:text-l sm:tracking-tight lg:text-l">
+                <div className="mt-10 2 flex m-20 flex-col sm:mt-0 sm:ml-10 w-full">
+                  <h2 className="mt-1 w-full text-l font-bold text-gray-900 sm:text-l sm:tracking-tight lg:text-l">
                     {comic.title}
                   </h2>
                   <h2 className="mt-3 text-4xl font-bold text-gray-500 sm:text-3xl sm:tracking-tight lg:text-3xl">
                     {comic.name}
                   </h2>
-                  <div className="flex">
-                    <div className="flex-col">
+                  <div className="flex w-full">
+                    <div className="flex-col ">
                       {comic.characters.items.length > 0 ? <>Characters</> : null}
                       {comic.characters.items.map(({ name }) => (
                         <h3 className="p-1 flex-col m-1 bg-gray-700 text-gray-100 hover:bg-gray-500 hover:text-white">
@@ -95,7 +95,7 @@ export default function ComicModal({ comic, onDismiss }) {
               </div>
             </div>
             <div className="bg-white flex flex-col">
-              <div className="mt-16 max-w-2xl px-1 sm:px-6 lg:max-w-7xl lg:px-5">
+              <div className="mt-16 max-w-full px-1 sm:px-6 lg:max-w-7xl lg:px-5">
                 <div className="flex flex-col sm:flex-row">
                   {process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY && (
                     <LoadScriptNext
@@ -115,13 +115,13 @@ export default function ComicModal({ comic, onDismiss }) {
                   )}
                 </div>
                 <div className="flex flex-col sm:flex-row">
-                  Endereço
+                  <p className="w-36 p-2">Endereço: </p>
                   <h4 className="p-1 flex-col m-1 bg-gray-700 text-gray-100 hover:bg-gray-500 hover:text-white">
                     {address && <>{address.lat()} || {address.lng()}</>}
                   </h4>
                 </div>
-                <div className="flex flex-col sm:flex-row">
-                  <button onClick={() => sendComic()} className="p-3 flex-col m-1 bg-gray-700 text-white hover:bg-gray-500 hover:text-white">
+                <div className="mr-5 mb-5 flex flex-col sm:flex-row">
+                  <button onClick={() => sendComic()} className="p-3 flex-col m-1 bg-blue-700 text-white hover:bg-blue-500 hover:text-white">
                     ENVIAR QUADRINHO
                   </button>
                 </div>
@@ -129,25 +129,25 @@ export default function ComicModal({ comic, onDismiss }) {
             </div>
           </div>
         </> : <>
-          <div className="bg-white flex flex-col justify-between">
-            <div className="mt-16 max-w-2xl px-1 sm:px-6 lg:max-w-7xl lg:px-5">
-              <div className="flex-row sm:flex-row">
-                Pedido enviado com sucesso
-                <div className=" flex-row">
+          <div className="bg-white flex flex-col justify-between w-6/12 h-max ">
+            <div className="mt-16 max-w-2xl px-1 sm:px-6 lg:max-w-7xl lg:px-5 ">
+              <div className="mb-16 flex-row sm:flex-row ">
+                <p className="text-xl">Pedido enviado com sucesso</p>
+                <div className="mt-10 flex-row">
                   Quadrinho
                   <h2 className="mt-1 text-l font-bold text-gray-900 sm:text-l sm:tracking-tight lg:text-l">
                     {comic.title}
                   </h2>
                 </div>
-                <div className=" flex-row">
+                <div className="mt-10 flex-row">
                   Endereço
                   <h2 className="mt-1 text-l font-bold text-gray-900 sm:text-l sm:tracking-tight lg:text-l">
                     {address && <>{address.lat()} || {address.lng()}</>}
                   </h2>
 
                 </div>
-                <div className=" flex-row">
-                  <button ref={button}  onClick={onClick} className="p-3 flex-col m-1 bg-gray-700 text-white hover:bg-gray-500 hover:text-white">
+                <div className="mt-10 flex-row">
+                  <button ref={button} onClick={onClick} className="p-3 flex-col m-1 bg-blue-700 text-white hover:bg-blue-500 hover:text-white">
                     FECHAR
                   </button>
 
